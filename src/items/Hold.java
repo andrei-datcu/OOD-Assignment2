@@ -1,4 +1,4 @@
-/**
+package items; /**
  * 
  * @author Brahma Dathan and Sarnath Ramnath
  * @Copyright (c) 2010
@@ -19,6 +19,9 @@
  * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE ARE DISCLAIMED.  
  */
+import items.models.Book;
+import member.Member;
+
 import java.util.*;
 import java.io.*;
 /**
@@ -45,15 +48,15 @@ public class Hold implements Serializable {
     date.add(Calendar.DATE, duration);
   }
   /**
-   * Getter for Member
-   * @return Member who has the hold
+   * Getter for member.Member
+   * @return member.Member who has the hold
    */
   public Member getMember() {
     return member;
   }
   /**
-   * Getter for Book
-   * @return Book being held
+   * Getter for items.models.Book
+   * @return items.models.Book being held
    */
   public Book getBook() {
     return book;

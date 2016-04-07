@@ -1,4 +1,4 @@
-/**
+package items; /**
  * 
  * @author Brahma Dathan and Sarnath Ramnath
  * @Copyright (c) 2010
@@ -19,58 +19,82 @@
  * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE ARE DISCLAIMED.  
  */
+
+import items.models.Book;
+
 import java.util.*;
+import java.lang.*;
 import java.io.*;
 /**
- * The collection class for Member objects
+ * The collection class for items.models.Book objects
  * @author Brahma Dathan and Sarnath Ramnath
  *
  */
-public class MemberList implements Serializable {
+public class Catalog implements Serializable {
   private static final long serialVersionUID = 1L;
-  private List members = new LinkedList();
-  private static MemberList memberList;
+  private List books = new LinkedList();
+  private static Catalog catalog;
   /*
    * Private constructor for singleton pattern
    * 
    */
-  private MemberList() {
+  private Catalog() {
   }
   /**
    * Supports the singleton pattern
    * 
    * @return the singleton object
    */
-  public static MemberList instance() {
-    if (memberList == null) {
-      return (memberList = new MemberList());
+  public static Catalog instance() {
+    if (catalog == null) {
+      return (catalog = new Catalog());
     } else {
-      return memberList;
+      return catalog;
     }
   }
   /**
-   * Checks whether a member with a given member id exists.
-   * @param memberId the id of the member
-   * @return true iff member exists
+   * Checks whether a book with a given book id exists.
+   * @param bookId the id of the book
+   * @return true iff the book exists
    * 
    */
-  public Member search(String memberId) {
-    for (Iterator iterator = members.iterator(); iterator.hasNext(); ) {
-      Member member = (Member) iterator.next();
-      if (member.getId().equals(memberId)) {
-        return member;
+  public Book search(String bookId) {
+    for (Iterator iterator = books.iterator(); iterator.hasNext(); ) {
+      Book book = (Book) iterator.next();
+      if (book.getId().equals(bookId)) {
+        return book;
       }
     }
     return null;
   }
   /**
-   * Inserts a member into the collection
-   * @param member the member to be inserted
-   * @return true iff the member could be inserted. Currently always true
+   * Removes a book from the catalog
+   * @param bookId book id
+   * @return true iff book could be removed
    */
-  public boolean insertMember(Member member) {
-    members.add(member);
+  public boolean removeBook(String bookId) {
+    Book book = search(bookId);
+    if (book == null) {
+      return false;
+    } else {
+      return books.remove(book);
+    }
+  }
+  /**
+   * Inserts a book into the collection
+   * @param book the book to be inserted
+   * @return true iff the book could be inserted. Currently always true
+   */
+  public boolean insertBook(Book book) {
+    books.add(book);
     return true;
+  }
+  /**
+   * Returns an iterator to all books
+   * @return iterator to the collection
+   */
+  public Iterator getBooks() {
+    return books.iterator();
   }
   /*
    * Supports serialization
@@ -79,9 +103,9 @@ public class MemberList implements Serializable {
   private void writeObject(java.io.ObjectOutputStream output) {
     try {
       output.defaultWriteObject();
-      output.writeObject(memberList);
+      output.writeObject(catalog);
     } catch(IOException ioe) {
-      ioe.printStackTrace();
+      System.out.println(ioe);
     }
   }
   /*
@@ -90,18 +114,18 @@ public class MemberList implements Serializable {
    */
   private void readObject(java.io.ObjectInputStream input) {
     try {
-      if (memberList != null) {
+      if (catalog != null) {
         return;
       } else {
         input.defaultReadObject();
-        if (memberList == null) {
-          memberList = (MemberList) input.readObject();
+        if (catalog == null) {
+          catalog = (Catalog) input.readObject();
         } else {
           input.readObject();
         }
       }
     } catch(IOException ioe) {
-      ioe.printStackTrace();
+      System.out.println("in items.Catalog readObject \n" + ioe);
     } catch(ClassNotFoundException cnfe) {
       cnfe.printStackTrace();
     }
@@ -109,8 +133,7 @@ public class MemberList implements Serializable {
   /** String form of the collection
   * 
   */
-  @Override
   public String toString() {
-    return members.toString();
+    return books.toString();
   }
 }

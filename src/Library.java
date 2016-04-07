@@ -19,6 +19,13 @@
  * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE ARE DISCLAIMED.  
  */
+import items.models.Book;
+import items.Catalog;
+import items.Hold;
+import member.Member;
+import member.MemberIdServer;
+import member.MemberList;
+
 import java.util.*;
 import java.io.*;
 public class Library implements Serializable {
@@ -61,7 +68,7 @@ public class Library implements Serializable {
    * @param title book title
    * @param author author name
    * @param id book id
-   * @return the Book object created
+   * @return the items.models.Book object created
    */
   public Book addBook(String title, String author, String id) {
     Book book = new Book(title, author, id);
@@ -75,7 +82,7 @@ public class Library implements Serializable {
   * @param name member name
   * @param address member address
   * @param phone member phone
-  * @return the Member object created
+  * @return the member.Member object created
   */
   public Member addMember(String name, String address, String phone) {
     Member member = new Member(name, address, phone);

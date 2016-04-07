@@ -1,4 +1,4 @@
-/**
+package member; /**
  * 
  * @author Brahma Dathan and Sarnath Ramnath
  * @Copyright (c) 2010
@@ -19,6 +19,8 @@
  * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE ARE DISCLAIMED.  
  */
+import items.models.Book;
+
 import java.util.*;
 import java.io.*;
 public class Member implements Serializable {
@@ -50,7 +52,7 @@ public class Member implements Serializable {
    */
   public boolean issue(Book book) {
     if (booksBorrowed.add(book)) {
-      transactions.add(new Transaction ("Book issued ", book.getTitle()));
+      transactions.add(new Transaction("items.models.Book issued ", book.getTitle()));
       return true;
     }
     return false;
@@ -62,7 +64,7 @@ public class Member implements Serializable {
    */
   public boolean returnBook(Book book) {
     if ( booksBorrowed.remove(book)){
-      transactions.add(new Transaction ("Book returned ", book.getTitle()));
+      transactions.add(new Transaction("items.models.Book returned ", book.getTitle()));
       return true;
     }
     return false;
@@ -77,7 +79,7 @@ public class Member implements Serializable {
       Book aBook = (Book) iterator.next();
       String id = aBook.getId();
       if (id.equals(book.getId())) {
-        transactions.add(new Transaction ("Book renewed ",  book.getTitle()));
+        transactions.add(new Transaction("items.models.Book renewed ",  book.getTitle()));
         return true;
       }
     }
@@ -95,7 +97,7 @@ public class Member implements Serializable {
    * @param hold the book to be placed a hold
    */
   public void placeHold(Hold hold) {
-    transactions.add(new Transaction ("Hold Placed ", hold.getBook().getTitle()));
+    transactions.add(new Transaction("items.Hold Placed ", hold.getBook().getTitle()));
     booksOnHold.add(hold);
   }
   /**
@@ -108,7 +110,7 @@ public class Member implements Serializable {
       Hold hold = (Hold) iterator.next();
       String id = hold.getBook().getId();
       if (id.equals(bookId)) {
-        transactions.add(new Transaction ("Hold Removed ", hold.getBook().getTitle()));
+        transactions.add(new Transaction("items.Hold Removed ", hold.getBook().getTitle()));
         iterator.remove();
         return true;
       }
@@ -193,7 +195,7 @@ public class Member implements Serializable {
   */
  @Override
   public String toString() {
-    String string = "Member name " + name + " address " + address + " id " + id + "phone " + phone;
+    String string = "member.Member name " + name + " address " + address + " id " + id + "phone " + phone;
     string += " borrowed: [";
     for (Iterator iterator = booksBorrowed.iterator(); iterator.hasNext(); ) {
       Book book = (Book) iterator.next();

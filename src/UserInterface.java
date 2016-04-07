@@ -17,6 +17,10 @@
  * The authors do not make any claims regarding the correctness of the code in this module
  * and are not responsible for any loss or damage resulting from its use.  
  */
+import items.models.Book;
+import items.Transaction;
+import member.Member;
+
 import java.util.*;
 import java.text.*;
 import java.io.*;
@@ -212,7 +216,7 @@ public class UserInterface {
       if (result != null) {
         System.out.println(result);
       } else {
-        System.out.println("Book could not be added");
+        System.out.println("items.models.Book could not be added");
       }
       if (!yesOrNo("Add more books?")) {
         break;
@@ -238,7 +242,7 @@ public class UserInterface {
       if (result != null){
         System.out.println(result.getTitle()+ "   " +  result.getDueDate());
       } else {
-          System.out.println("Book could not be issued");
+          System.out.println("items.models.Book could not be issued");
       }
       if (!yesOrNo("Issue more books?")) {
         break;
@@ -266,7 +270,7 @@ public class UserInterface {
         if (result != null){
           System.out.println(result.getTitle()+ "   " + result.getDueDate());
         } else {
-          System.out.println("Book is not renewable");
+          System.out.println("items.models.Book is not renewable");
         }
       }
     }
@@ -284,19 +288,19 @@ public class UserInterface {
       result = library.returnBook(bookID);
       switch(result) {
         case Library.BOOK_NOT_FOUND:
-          System.out.println("No such Book in Library");
+          System.out.println("No such items.models.Book in Library");
           break;
         case Library.BOOK_NOT_ISSUED:
-          System.out.println(" Book  was not checked out");
+          System.out.println(" items.models.Book  was not checked out");
           break;
         case Library.BOOK_HAS_HOLD:
-          System.out.println("Book has a hold");
+          System.out.println("items.models.Book has a hold");
           break;
         case Library.OPERATION_FAILED:
-          System.out.println("Book could not be returned");
+          System.out.println("items.models.Book could not be returned");
           break;
         case Library.OPERATION_COMPLETED:
-          System.out.println(" Book has been returned");
+          System.out.println(" items.models.Book has been returned");
           break;
         default:
           System.out.println("An error has occurred");
@@ -319,19 +323,19 @@ public class UserInterface {
       result = library.removeBook(bookID);
       switch(result){
         case Library.BOOK_NOT_FOUND:
-          System.out.println("No such Book in Library");
+          System.out.println("No such items.models.Book in Library");
           break;
         case Library.BOOK_ISSUED:
-          System.out.println(" Book is currently checked out");
+          System.out.println(" items.models.Book is currently checked out");
           break;
         case Library.BOOK_HAS_HOLD:
-          System.out.println("Book has a hold");
+          System.out.println("items.models.Book has a hold");
           break;
         case Library.OPERATION_FAILED:
-          System.out.println("Book could not be removed");
+          System.out.println("items.models.Book could not be removed");
           break;
         case Library.OPERATION_COMPLETED:
-          System.out.println(" Book has been removed");
+          System.out.println(" items.models.Book has been removed");
           break;
         default:
           System.out.println("An error has occurred");
@@ -354,10 +358,10 @@ public class UserInterface {
     int result = library.placeHold(memberID, bookID, duration);
     switch(result){
       case Library.BOOK_NOT_FOUND:
-        System.out.println("No such Book in Library");
+        System.out.println("No such items.models.Book in Library");
         break;
       case Library.BOOK_NOT_ISSUED:
-        System.out.println(" Book is not checked out");
+        System.out.println(" items.models.Book is not checked out");
         break;
       case Library.NO_SUCH_MEMBER:
         System.out.println("Not a valid member ID");
@@ -381,7 +385,7 @@ public class UserInterface {
     int result = library.removeHold(memberID, bookID);
     switch(result){
       case Library.BOOK_NOT_FOUND:
-        System.out.println("No such Book in Library");
+        System.out.println("No such items.models.Book in Library");
         break;
       case Library.NO_SUCH_MEMBER:
         System.out.println("Not a valid member ID");
@@ -426,7 +430,7 @@ public class UserInterface {
     Calendar date  = getDate("Please enter the date for which you want records as mm/dd/yy");
     result = library.getTransactions(memberID,date);
     if (result == null) {
-      System.out.println("Invalid Member ID");
+      System.out.println("Invalid member.Member ID");
     } else {
       while(result.hasNext()) {
         Transaction transaction = (Transaction) result.next();

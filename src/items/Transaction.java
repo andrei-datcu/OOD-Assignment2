@@ -1,4 +1,4 @@
-/**
+package items; /**
  * 
  * @author Brahma Dathan and Sarnath Ramnath
  * @Copyright (c) 2010
@@ -20,7 +20,7 @@
 import java.util.*;
 import java.io.*;
 /**
- * Represents a single Transaction (issue, renew, etc.)
+ * Represents a single items.Transaction (issue, renew, etc.)
  * 
  * @author Brahma Dathan
  *
