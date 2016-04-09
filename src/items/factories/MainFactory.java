@@ -38,4 +38,13 @@ public class MainFactory {
         }
         return f.generate(arguments);
     }
+
+    /**
+     * Get the names of the parameters need to construct an item
+     * @param type Item type
+     * @return parameter names
+     */
+    public static String[] getParameterNames(String type) {
+        return knownFactories.get(type).getParameterNames();
+    }
 }

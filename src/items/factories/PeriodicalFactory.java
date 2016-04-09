@@ -3,7 +3,7 @@ package items.factories;
 import items.models.Item;
 import items.models.Periodical;
 
-public class PeriodicalFactory extends BaseGeneralFactory {
+class PeriodicalFactory extends BaseGeneralFactory {
 
     PeriodicalFactory() {
         super(Periodical.class);
@@ -12,5 +12,10 @@ public class PeriodicalFactory extends BaseGeneralFactory {
     @Override
     protected Class[] getConstructorSignature() {
         return new Class[]{String.class, String.class};
+    }
+
+    @Override
+    public String[] getParameterNames() {
+        return new String[]{"title", "id"};
     }
 }

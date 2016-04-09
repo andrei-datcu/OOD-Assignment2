@@ -11,11 +11,11 @@ public class ElectronicItem extends BaseItem {
     /**
      * Creates an item with the given id
      *
-     * @param id item id
      * @param brand device's brand (such as Apple. Asus etc.)
      * @param model device's model (such MacBook, ZenBook etc.)
+     * @param id item id
      */
-    public ElectronicItem(String id, String brand, String model) {
+    public ElectronicItem(String brand, String model, String id) {
         super(id);
         this.brand = brand;
         this.model = model;

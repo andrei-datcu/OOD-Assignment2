@@ -20,7 +20,7 @@ package items; /**
  * PURPOSE ARE DISCLAIMED.  
  */
 
-import items.models.SimpleBook;
+import items.models.Item;
 
 import java.util.*;
 import java.lang.*;
@@ -32,7 +32,7 @@ import java.io.*;
  */
 public class Catalog implements Serializable {
   private static final long serialVersionUID = 1L;
-  private List books = new LinkedList();
+  private List items = new LinkedList();
   private static Catalog catalog;
   /*
    * Private constructor for singleton pattern
@@ -53,48 +53,48 @@ public class Catalog implements Serializable {
     }
   }
   /**
-   * Checks whether a book with a given book id exists.
-   * @param bookId the id of the book
-   * @return true iff the book exists
+   * Checks whether a item with a given item id exists.
+   * @param itemId the id of the item
+   * @return true iff the item exists
    * 
    */
-  public SimpleBook search(String bookId) {
-    for (Iterator iterator = books.iterator(); iterator.hasNext(); ) {
-      SimpleBook book = (SimpleBook) iterator.next();
-      if (book.getId().equals(bookId)) {
-        return book;
+  public Item search(String itemId) {
+    for (Iterator iterator = items.iterator(); iterator.hasNext(); ) {
+      Item item = (Item) iterator.next();
+      if (item.getId().equals(itemId)) {
+        return item;
       }
     }
     return null;
   }
   /**
-   * Removes a book from the catalog
-   * @param bookId book id
-   * @return true iff book could be removed
+   * Removes a item from the catalog
+   * @param itemId item id
+   * @return true iff item could be removed
    */
-  public boolean removeBook(String bookId) {
-    SimpleBook book = search(bookId);
-    if (book == null) {
+  public boolean removeItem(String itemId) {
+    Item item = search(itemId);
+    if (item == null) {
       return false;
     } else {
-      return books.remove(book);
+      return items.remove(item);
     }
   }
   /**
-   * Inserts a book into the collection
-   * @param book the book to be inserted
-   * @return true iff the book could be inserted. Currently always true
+   * Inserts a item into the collection
+   * @param item the item to be inserted
+   * @return true iff the item could be inserted. Currently always true
    */
-  public boolean insertBook(SimpleBook book) {
-    books.add(book);
+  public boolean insertItem(Item item) {
+    items.add(item);
     return true;
   }
   /**
-   * Returns an iterator to all books
+   * Returns an iterator to all items
    * @return iterator to the collection
    */
-  public Iterator getBooks() {
-    return books.iterator();
+  public Iterator getItems() {
+    return items.iterator();
   }
   /*
    * Supports serialization
@@ -134,6 +134,6 @@ public class Catalog implements Serializable {
   * 
   */
   public String toString() {
-    return books.toString();
+    return items.toString();
   }
 }

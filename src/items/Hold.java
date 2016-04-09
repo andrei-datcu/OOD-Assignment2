@@ -19,29 +19,29 @@ package items; /**
  * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE ARE DISCLAIMED.  
  */
-import items.models.SimpleBook;
+import items.models.Item;
 import member.Member;
 
 import java.util.*;
 import java.io.*;
 /**
- * Represents a single hold on a book by a member
+ * Represents a single hold on a item by a member
  * @author Brahma Dathan and Sarnath Ramnath
  *
  */
 public class Hold implements Serializable {
-  private SimpleBook book;
+  private Item item;
   private Member member;
   private Calendar date;
   /**
-   * The member and book are stored. The date is computed by adding the
+   * The member and item are stored. The date is computed by adding the
    * duration days to the current date.
    * @param member who places the hold
-   * @param book the book on which hold is placed
+   * @param item the item on which hold is placed
    * @param duration for how long the hold is valid
    */
-  public Hold(Member member, SimpleBook book, int duration) {
-    this.book = book;
+  public Hold(Member member, Item item, int duration) {
+    this.item = item;
     this.member = member;
     date = new GregorianCalendar();
     date.setTimeInMillis(System.currentTimeMillis());
@@ -58,8 +58,8 @@ public class Hold implements Serializable {
    * Getter for items.models.Book
    * @return items.models.Book being held
    */
-  public SimpleBook getBook() {
-    return book;
+  public Item getItem() {
+    return item;
   }
   /**
    * Getter for date

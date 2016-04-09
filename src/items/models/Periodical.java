@@ -13,10 +13,10 @@ public class Periodical extends BaseItem {
     /**
      * Creates an item with the given id
      *
-     * @param id item id
      * @param title periodical's title
+     * @param id item id
      */
-    public Periodical(String id, String title) {
+    public Periodical(String title, String id) {
         super(id);
         this.title = title;
     }

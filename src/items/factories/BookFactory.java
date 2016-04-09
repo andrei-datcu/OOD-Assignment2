@@ -8,7 +8,7 @@ import items.models.SimpleBook;
 /**
  * Factory for generating media items
  */
-public class BookFactory extends BaseFactory {
+class BookFactory extends BaseFactory {
 
     @Override
     public Item generate(Object[] arguments) {
@@ -28,5 +28,10 @@ public class BookFactory extends BaseFactory {
         } catch (ClassCastException e) {
             return null;
         }
+    }
+
+    @Override
+    public String[] getParameterNames() {
+        return new String[]{"title", "author", "id"};
     }
 }

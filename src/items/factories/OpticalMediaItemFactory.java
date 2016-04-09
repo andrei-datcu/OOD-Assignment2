@@ -6,7 +6,7 @@ import items.models.OpticalMediaItem;
 /**
  * Factory for Optiocal Media Items
  */
-public class OpticalMediaItemFactory extends BaseGeneralFactory {
+class OpticalMediaItemFactory extends BaseGeneralFactory {
 
     OpticalMediaItemFactory(Class<? extends OpticalMediaItem> cls) {
         super(cls);
@@ -33,5 +33,10 @@ public class OpticalMediaItemFactory extends BaseGeneralFactory {
     @Override
     protected Class[] getConstructorSignature() {
         return new Class[] {String.class, String.class, Integer.class, String.class};
+    }
+
+    @Override
+    public String[] getParameterNames() {
+        return new String[] {"title", "author", "duration", "id"};
     }
 }
