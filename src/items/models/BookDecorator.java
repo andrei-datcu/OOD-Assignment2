@@ -11,20 +11,20 @@ import java.util.Iterator;
  */
 public abstract class BookDecorator implements Book {
 
-    private SimpleBook book;
+    private Book book;
 
     /**
      * Create a decorator by decorating a normal book
      * @param book to be decorated
      */
-    public BookDecorator(SimpleBook book) {
+    public BookDecorator(Book book) {
         this.book = book;
     }
 
     /**
      * @return the book this decorator decorates
      */
-    public SimpleBook getDecoratedBook() {
+    public Book getDecoratedBook() {
         return book;
     }
 

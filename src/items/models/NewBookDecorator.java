@@ -14,7 +14,7 @@ public class NewBookDecorator extends BookDecorator {
      *
      * @param book to be decorated
      */
-    public NewBookDecorator(SimpleBook book) {
+    public NewBookDecorator(Book book) {
         super(book);
     }
 

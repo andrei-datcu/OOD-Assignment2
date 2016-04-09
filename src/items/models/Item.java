@@ -11,7 +11,7 @@ import java.util.Iterator;
  * Loanable item. Every lonable item that is added in the Catalog
  * must implement this
  */
-interface Item extends Serializable {
+public interface Item extends Serializable {
     /**
      * Marks the item as issued to a member
      *

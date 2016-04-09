@@ -15,7 +15,7 @@ public class CostlyBookDecorator extends BookDecorator {
      *
      * @param book to be decorated
      */
-    public CostlyBookDecorator(SimpleBook book) {
+    public CostlyBookDecorator(Book book) {
         super(book);
         dateMadeCostly = Calendar.getInstance();
     }
