@@ -19,7 +19,7 @@ package member; /**
  * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE ARE DISCLAIMED.  
  */
-import items.models.Book;
+import items.models.SimpleBook;
 
 import java.util.*;
 import java.io.*;
@@ -50,7 +50,7 @@ public class Member implements Serializable {
    * @param book the book to be issued
    * @return true iff the book could be marked as issued. always true currently 
    */
-  public boolean issue(Book book) {
+  public boolean issue(SimpleBook book) {
     if (booksBorrowed.add(book)) {
       transactions.add(new Transaction("items.models.Book issued ", book.getTitle()));
       return true;
@@ -62,7 +62,7 @@ public class Member implements Serializable {
    * @param book the book to be returned
    * @return true iff the book could be marked as marked as returned 
    */
-  public boolean returnBook(Book book) {
+  public boolean returnBook(SimpleBook book) {
     if ( booksBorrowed.remove(book)){
       transactions.add(new Transaction("items.models.Book returned ", book.getTitle()));
       return true;
@@ -74,9 +74,9 @@ public class Member implements Serializable {
    * @param book the book to be renewed
    * @return true iff the book could be renewed
    */
-  public boolean renew(Book book) {
+  public boolean renew(SimpleBook book) {
     for (ListIterator iterator = booksBorrowed.listIterator(); iterator.hasNext(); ) {
-      Book aBook = (Book) iterator.next();
+      SimpleBook aBook = (SimpleBook) iterator.next();
       String id = aBook.getId();
       if (id.equals(book.getId())) {
         transactions.add(new Transaction("items.models.Book renewed ",  book.getTitle()));
@@ -198,7 +198,7 @@ public class Member implements Serializable {
     String string = "member.Member name " + name + " address " + address + " id " + id + "phone " + phone;
     string += " borrowed: [";
     for (Iterator iterator = booksBorrowed.iterator(); iterator.hasNext(); ) {
-      Book book = (Book) iterator.next();
+      SimpleBook book = (SimpleBook) iterator.next();
       string += " " + book.getTitle();
     }
     string += "] holds: [";

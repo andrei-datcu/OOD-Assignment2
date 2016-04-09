@@ -17,7 +17,7 @@
  * The authors do not make any claims regarding the correctness of the code in this module
  * and are not responsible for any loss or damage resulting from its use.  
  */
-import items.models.Book;
+import items.models.SimpleBook;
 import items.Transaction;
 import member.Member;
 
@@ -207,7 +207,7 @@ public class UserInterface {
    *  
    */
   public void addBooks() {
-    Book result;
+    SimpleBook result;
     do {
       String title = getToken("Enter  title");
       String bookID = getToken("Enter id");
@@ -230,7 +230,7 @@ public class UserInterface {
    *  
    */
   public void issueBooks() {
-    Book result;
+    SimpleBook result;
     String memberID = getToken("Enter member id");
     if (library.searchMembership(memberID) == null) {
       System.out.println("No such member");
@@ -256,7 +256,7 @@ public class UserInterface {
    *  
    */
   public void renewBooks() {
-    Book result;
+    SimpleBook result;
     String memberID = getToken("Enter member id");
     if (library.searchMembership(memberID) == null) {
       System.out.println("No such member");
@@ -264,7 +264,7 @@ public class UserInterface {
     }
     Iterator issuedBooks = library.getBooks(memberID);
     while (issuedBooks.hasNext()){
-      Book book = (Book)(issuedBooks.next());
+      SimpleBook book = (SimpleBook)(issuedBooks.next());
       if (yesOrNo(book.getTitle())) {
         result = library.renewBook(book.getId(), memberID);
         if (result != null){

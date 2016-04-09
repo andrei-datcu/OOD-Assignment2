@@ -42,6 +42,6 @@ public abstract class MediaItem extends BaseItem {
      * String form of the book
      */
     public String toString() {
-        return String.format("%s; Author: %s; Title: %s;", super.toString(), getAuthor(), getTitle());
+        return String.format("%s Author: %s; Title: %s;", super.toString(), getAuthor(), getTitle());
     }
 }

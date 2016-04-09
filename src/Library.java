@@ -19,7 +19,7 @@
  * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE ARE DISCLAIMED.  
  */
-import items.models.Book;
+import items.models.SimpleBook;
 import items.Catalog;
 import items.Hold;
 import member.Member;
@@ -70,8 +70,8 @@ public class Library implements Serializable {
    * @param id book id
    * @return the items.models.Book object created
    */
-  public Book addBook(String title, String author, String id) {
-    Book book = new Book(title, author, id);
+  public SimpleBook addBook(String title, String author, String id) {
+    SimpleBook book = new SimpleBook(title, author, id);
     if (catalog.insertBook(book)) {
       return (book);
     }
@@ -99,7 +99,7 @@ public class Library implements Serializable {
    * @return indication on the outcome
    */
   public int placeHold(String memberId, String bookId, int duration) {
-    Book book = catalog.search(bookId);
+    SimpleBook book = catalog.search(bookId);
     if (book == null) {
       return(BOOK_NOT_FOUND);
     }
@@ -129,7 +129,7 @@ public class Library implements Serializable {
    * @return the member who should be notified
    */
   public Member processHold(String bookId) {
-    Book book = catalog.search(bookId);
+    SimpleBook book = catalog.search(bookId);
     if (book == null) {
       return (null);
     }
@@ -152,7 +152,7 @@ public class Library implements Serializable {
     if (member == null) {
       return (NO_SUCH_MEMBER);
     }
-    Book book = catalog.search(bookId);
+    SimpleBook book = catalog.search(bookId);
     if (book == null) {
       return(BOOK_NOT_FOUND);
     }
@@ -163,7 +163,7 @@ public class Library implements Serializable {
    */
   private void removeInvalidHolds() {
     for (Iterator catalogIterator = catalog.getBooks(); catalogIterator.hasNext(); ) {
-      for (Iterator iterator = ((Book) catalogIterator.next()).getHolds(); iterator.hasNext(); ) {
+      for (Iterator iterator = ((SimpleBook) catalogIterator.next()).getHolds(); iterator.hasNext(); ) {
         Hold hold = (Hold) iterator.next();
         if (!hold.isValid()) {
           hold.getBook().removeHold(hold.getMember().getId());
@@ -178,8 +178,8 @@ public class Library implements Serializable {
    * @param bookId book id
    * @return the book issued
    */
-  public Book issueBook(String memberId, String bookId) {
-    Book book = catalog.search(bookId);
+  public SimpleBook issueBook(String memberId, String bookId) {
+    SimpleBook book = catalog.search(bookId);
     if (book == null) {
       return(null);
     }
@@ -201,8 +201,8 @@ public class Library implements Serializable {
    * @param memberId member id
    * @return the book renewed
    */
-  public Book renewBook(String bookId, String memberId) {
-    Book book = catalog.search(bookId);
+  public SimpleBook renewBook(String bookId, String memberId) {
+    SimpleBook book = catalog.search(bookId);
     if (book == null) {
       return(null);
     }
@@ -234,7 +234,7 @@ public class Library implements Serializable {
    * @return a code representing the outcome
    */
   public int removeBook(String bookId) {
-    Book book = catalog.search(bookId);
+    SimpleBook book = catalog.search(bookId);
     if (book == null) {
       return(BOOK_NOT_FOUND);
     }
@@ -255,7 +255,7 @@ public class Library implements Serializable {
    * @return a code representing the outcome
    */
   public int returnBook(String bookId) {
-    Book book = catalog.search(bookId);
+    SimpleBook book = catalog.search(bookId);
     if (book == null) {
       return(BOOK_NOT_FOUND);
     }

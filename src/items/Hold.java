@@ -19,7 +19,7 @@ package items; /**
  * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE ARE DISCLAIMED.  
  */
-import items.models.Book;
+import items.models.SimpleBook;
 import member.Member;
 
 import java.util.*;
@@ -30,7 +30,7 @@ import java.io.*;
  *
  */
 public class Hold implements Serializable {
-  private Book book;
+  private SimpleBook book;
   private Member member;
   private Calendar date;
   /**
@@ -40,7 +40,7 @@ public class Hold implements Serializable {
    * @param book the book on which hold is placed
    * @param duration for how long the hold is valid
    */
-  public Hold(Member member, Book book, int duration) {
+  public Hold(Member member, SimpleBook book, int duration) {
     this.book = book;
     this.member = member;
     date = new GregorianCalendar();
@@ -58,7 +58,7 @@ public class Hold implements Serializable {
    * Getter for items.models.Book
    * @return items.models.Book being held
    */
-  public Book getBook() {
+  public SimpleBook getBook() {
     return book;
   }
   /**
