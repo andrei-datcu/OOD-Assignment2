@@ -14,4 +14,14 @@ public class Laptop extends ElectronicItem {
     public Laptop(String brand, String model, String id) {
         super(id, brand, model);
     }
+
+    /**
+     * Accept method for the visitor pattern
+     *
+     * @param visitor
+     */
+    @Override
+    public void accept(ItemVisitor visitor) {
+        visitor.visit(this);
+    }
 }

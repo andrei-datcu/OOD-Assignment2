@@ -50,6 +50,7 @@ public class UserInterface {
     private static final int SAVE = 11;
     private static final int RETRIEVE = 12;
     private static final int HELP = 13;
+    private static final int COUNT_ITEMS = 98;
     private static final int ADD_FINE = 99;
     /**
      * Made private for singleton pattern.
@@ -155,7 +156,7 @@ public class UserInterface {
         do {
             try {
                 int value = Integer.parseInt(getToken("Enter command:" + HELP + " for help"));
-                if ((value >= EXIT && value <= HELP) || value == ADD_FINE){
+                if ((value >= EXIT && value <= ADD_FINE)) {
                     return value;
                 }
             } catch (NumberFormatException nfe) {
@@ -183,6 +184,7 @@ public class UserInterface {
         System.out.println(SAVE + " to save data");
         System.out.println(RETRIEVE + " to retrieve");
         System.out.println(HELP + " for help");
+        System.out.println(COUNT_ITEMS + " to show a count of each item category");
         System.out.println(ADD_FINE + " to add fines");
     }
     /**
@@ -493,6 +495,12 @@ public class UserInterface {
         }
     }
     /**
+     * Method to count the items in each category
+     */
+    public void countItems() {
+       System.out.println(library.countItems().toString());
+    }
+    /**
      * Orchestrates the whole process.
      * Calls the appropriate method for the different functionalties.
      *
@@ -528,7 +536,9 @@ public class UserInterface {
                     break;
                 case HELP:              help();
                     break;
-                case ADD_FINE:         addFine();
+                case ADD_FINE:          addFine();
+                    break;
+                case COUNT_ITEMS:       countItems();
                     break;
             }
         }

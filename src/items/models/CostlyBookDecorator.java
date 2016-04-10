@@ -29,4 +29,13 @@ public class CostlyBookDecorator extends BookDecorator {
         return now.before(limit);
     }
 
+    /**
+     * Accept method for the visitor pattern
+     *
+     * @param visitor
+     */
+    @Override
+    public void accept(ItemVisitor visitor) {
+        visitor.visit(getDecoratedBook());
+    }
 }

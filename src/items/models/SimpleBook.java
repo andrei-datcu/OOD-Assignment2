@@ -49,4 +49,14 @@ public class SimpleBook extends MediaItem implements Book {
 
         return 15 + 5 * (dueDays - 1);
     }
+
+    /**
+     * Accept method for the visitor pattern
+     *
+     * @param visitor
+     */
+    @Override
+    public void accept(ItemVisitor visitor) {
+        visitor.visit((Book)this);
+    }
 }

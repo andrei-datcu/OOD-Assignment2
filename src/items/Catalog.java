@@ -23,6 +23,7 @@ package items;
 
 import items.models.BookDecorator;
 import items.models.Item;
+import items.models.ItemVisitor;
 
 import java.util.*;
 import java.lang.*;
@@ -97,6 +98,16 @@ public class Catalog implements Serializable {
      */
     public Iterator getItems() {
         return items.iterator();
+    }
+
+    /**
+     * Visits all items of the catalog using the visitor pattern
+     * @param visitor
+     */
+    public void visitItems(ItemVisitor visitor) {
+        for (Object item : items) {
+            ((Item)item).accept(visitor);
+        }
     }
     /*
      * Supports serialization

@@ -15,4 +15,14 @@ public class CD extends OpticalMediaItem {
     public CD(String title, String author, Integer duration, String id) {
         super(title, author, duration, id);
     }
+
+    /**
+     * Accept method for the visitor pattern
+     *
+     * @param visitor
+     */
+    @Override
+    public void accept(ItemVisitor visitor) {
+        visitor.visit(this);
+    }
 }

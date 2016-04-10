@@ -1,5 +1,6 @@
 package items.models;
 
+
 import java.util.Calendar;
 
 /**
@@ -36,5 +37,15 @@ public class NewBookDecorator extends BookDecorator {
             return 0;
 
         return 25 + 10 * (dueDays - 1);
+    }
+
+    /**
+     * Accept method for the visitor pattern
+     *
+     * @param visitor
+     */
+    @Override
+    public void accept(ItemVisitor visitor) {
+        visitor.visit(getDecoratedBook());
     }
 }

@@ -20,6 +20,7 @@
  * PURPOSE ARE DISCLAIMED.
  */
 import items.factories.MainFactory;
+import items.models.CountingVisitor;
 import items.models.Item;
 import items.Catalog;
 import items.Hold;
@@ -290,6 +291,18 @@ public class Library implements Serializable {
 
         return(OPERATION_COMPLETED);
     }
+
+    /**
+     * Returns a count of the items in the catalog
+     * @return object holding the count of each items category
+     */
+    public CountingVisitor countItems() {
+        CountingVisitor countingVisitor = new CountingVisitor();
+        catalog.visitItems(countingVisitor);
+
+        return countingVisitor;
+    }
+
     /**
      * Returns an iterator to the transactions for a specific member on a certain date
      * @param memberId member id

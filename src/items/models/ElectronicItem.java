@@ -3,7 +3,7 @@ package items.models;
 /**
  * Base class for all electronic items (laptops, cameras etc.)
  */
-public class ElectronicItem extends BaseItem {
+public abstract class ElectronicItem extends BaseItem {
 
     private String brand;
     private String model;

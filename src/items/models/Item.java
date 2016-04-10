@@ -91,6 +91,12 @@ public interface Item extends Serializable {
     int computeFine();
 
     /**
+     * Accept method for the visitor pattern
+     * @param visitor
+     */
+    void accept(ItemVisitor visitor);
+
+    /**
      * String form of the item
      */
     String toString();

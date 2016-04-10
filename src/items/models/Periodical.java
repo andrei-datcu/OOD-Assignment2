@@ -34,6 +34,16 @@ public class Periodical extends BaseItem {
         }
     }
 
+    /**
+     * Accept method for the visitor pattern
+     *
+     * @param visitor
+     */
+    @Override
+    public void accept(ItemVisitor visitor) {
+        visitor.visit(this);
+    }
+
     public String getTitle() {
         return title;
     }
