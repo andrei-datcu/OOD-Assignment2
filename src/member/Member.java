@@ -36,6 +36,7 @@ public class Member implements Serializable {
     private List itemsBorrowed = new LinkedList();
     private List itemsOnHold = new LinkedList();
     private List transactions = new LinkedList();
+    private int fineOwed = 0;
     /**
      * Represents a single member
      * @param name name of the member
@@ -185,6 +186,20 @@ public class Member implements Serializable {
         phone = newPhone;
     }
     /**
+     * Adds amount to the fine owed by the current member
+     * @param amount of bani to fine the member. Can also be negative.
+     */
+    public void applyFine(int amount) {
+        fineOwed += amount;
+    }
+    /**
+     * The amount of bani owed in fines
+     * @return total fine owed
+     */
+    public int getFineOwed() {
+        return fineOwed;
+    }
+    /**
      * Checks whether the member is equal to the one with the given id
      * @param id of the member who should be compared
      * @return true iff the member ids match
@@ -213,7 +228,7 @@ public class Member implements Serializable {
         for (Iterator iterator = transactions.iterator(); iterator.hasNext(); ) {
             string += (Transaction) iterator.next();
         }
-        string += "]";
+        string += "] fines Owed: " + fineOwed;
         return string;
     }
 }

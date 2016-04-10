@@ -271,6 +271,21 @@ public class Library implements Serializable {
         }
         return(OPERATION_COMPLETED);
     }
+
+    /**
+     * Adds amount to the fine owed in bani by the member with memberId
+     * @param memberId member id
+     * @param amount amount (negative or positive)
+     * @return a code representing the outcome
+     */
+    public int addFines(String memberId, int amount) {
+        Member member = library.searchMembership(memberId);
+        if (member == null) {
+            return (NO_SUCH_MEMBER);
+        }
+
+        return(OPERATION_COMPLETED);
+    }
     /**
      * Returns an iterator to the transactions for a specific member on a certain date
      * @param memberId member id

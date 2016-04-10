@@ -50,6 +50,7 @@ public class UserInterface {
     private static final int SAVE = 11;
     private static final int RETRIEVE = 12;
     private static final int HELP = 13;
+    private static final int ADD_FINE = 99;
     /**
      * Made private for singleton pattern.
      * Conditionally looks for any saved data. Otherwise, it gets
@@ -154,7 +155,7 @@ public class UserInterface {
         do {
             try {
                 int value = Integer.parseInt(getToken("Enter command:" + HELP + " for help"));
-                if (value >= EXIT && value <= HELP) {
+                if ((value >= EXIT && value <= HELP) || value == ADD_FINE){
                     return value;
                 }
             } catch (NumberFormatException nfe) {
@@ -167,9 +168,9 @@ public class UserInterface {
      *
      */
     public void help() {
-        System.out.println("Enter a number between 0 and 12 as explained below:");
+        System.out.println("Enter a number between 0 and 14 as explained below:");
         System.out.println(EXIT + " to Exit\n");
-        System.out.println(ADD_MEMBER + " to add a member");
+        System.out.println(ADD_MEMBER + " to  add a member");
         System.out.println(ADD_ITEMS + " to  add items");
         System.out.println(ISSUE_ITEMS + " to  issue items to a  member");
         System.out.println(RETURN_ITEMS + " to  return items ");
@@ -178,10 +179,11 @@ public class UserInterface {
         System.out.println(PLACE_HOLD + " to  place a hold on a item");
         System.out.println(REMOVE_HOLD + " to  remove a hold on a item");
         System.out.println(PROCESS_HOLD + " to  process holds");
-        System.out.println(GET_TRANSACTIONS + " to  print transactions");
-        System.out.println(SAVE + " to  save data");
-        System.out.println(RETRIEVE + " to  retrieve");
+        System.out.println(GET_TRANSACTIONS + " to print transactions");
+        System.out.println(SAVE + " to save data");
+        System.out.println(RETRIEVE + " to retrieve");
         System.out.println(HELP + " for help");
+        System.out.println(ADD_FINE + " to add fines");
     }
     /**
      * Method to be called for adding a member.
@@ -471,11 +473,23 @@ public class UserInterface {
                 System.out.println(" The library has been successfully retrieved from the file LibraryData \n" );
                 library = tempLibrary;
             } else {
-                System.out.println("File doesnt exist; creating new library" );
+                System.out.println("File doesn't exist; creating new library" );
                 library = Library.instance();
             }
         } catch(Exception cnfe) {
             cnfe.printStackTrace();
+        }
+    }
+    /**
+     * Method to be called for adding fines
+     */
+    public void addFine() {
+        String memberId = getToken("Enter member id");
+        int fine = getNumber("Enter fine");
+        int result = library.addFines(memberId, fine);
+
+        if (result == Library.NO_SUCH_MEMBER) {
+            System.out.println("Not a valid member ID");
         }
     }
     /**
@@ -513,6 +527,8 @@ public class UserInterface {
                 case RETRIEVE:          retrieve();
                     break;
                 case HELP:              help();
+                    break;
+                case ADD_FINE:         addFine();
                     break;
             }
         }
