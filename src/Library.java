@@ -289,6 +289,8 @@ public class Library implements Serializable {
             return (NO_SUCH_MEMBER);
         }
 
+        member.applyFine(amount);
+
         return(OPERATION_COMPLETED);
     }
 
