@@ -160,8 +160,8 @@ public abstract class BaseItem implements Item {
      *
      * @return the date on which the item is due
      */
-    public String getDueDate() {
-        return (dueDate.getTime().toString());
+    public Calendar getDueDate() {
+        return dueDate;
     }
 
     /**
@@ -170,6 +170,13 @@ public abstract class BaseItem implements Item {
      */
     public Calendar getAddedDate() {
         return (Calendar) addedDate.clone();
+    }
+
+    /**
+     * @return the fine that is owed for this item;
+     */
+    public int computeFine() {
+        return 0;
     }
 
     /**

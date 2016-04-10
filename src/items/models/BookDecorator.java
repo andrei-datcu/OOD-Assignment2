@@ -4,13 +4,13 @@ import items.Hold;
 import member.Member;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 
 /**
  * Abstract class for decorated books
  */
 public abstract class BookDecorator implements Book {
-
     private Book book;
 
     /**
@@ -109,12 +109,17 @@ public abstract class BookDecorator implements Book {
     }
 
     @Override
-    public String getDueDate() {
+    public Calendar getDueDate() {
         return book.getDueDate();
     }
 
     @Override
     public Calendar getAddedDate() {
         return book.getAddedDate();
+    }
+
+    @Override
+    public int computeFine() {
+        return book.computeFine();
     }
 }

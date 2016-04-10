@@ -266,6 +266,10 @@ public class Library implements Serializable {
         if (!(member.returnItem(item))) {
             return(OPERATION_FAILED);
         }
+
+        // Apply fine to member according to the item compute rules
+        member.applyFine(item.computeFine());
+
         if (item.hasHold()) {
             return(ITEM_HAS_HOLD);
         }

@@ -35,4 +35,18 @@ public class SimpleBook extends MediaItem implements Book {
     public SimpleBook(String title, String author, String id) {
         super(title, author, id);
     }
+
+    /**
+     * @return the fine that is owed for this item;
+     */
+    @Override
+    public int computeFine() {
+        int dueDays = DateUtils.daysBetween(getDueDate().getTimeInMillis(),
+                System.currentTimeMillis());
+
+        if (dueDays == 0)
+            return 0;
+
+        return 15 + 5 * (dueDays - 1);
+    }
 }

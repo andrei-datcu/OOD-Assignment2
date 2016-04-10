@@ -78,12 +78,17 @@ public interface Item extends Serializable {
     /**
      * @return the date on which the item is due
      */
-    String getDueDate();
+    Calendar getDueDate();
 
     /**
      * @return the date on which the item was added
      */
     Calendar getAddedDate();
+
+    /**
+     * @return the fine that is owed for this item;
+     */
+    int computeFine();
 
     /**
      * String form of the item

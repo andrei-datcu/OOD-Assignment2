@@ -26,4 +26,15 @@ public class NewBookDecorator extends BookDecorator {
 
         return now.before(deprecationDate);
     }
+
+    @Override
+    public int computeFine() {
+        int dueDays = DateUtils.daysBetween(getDecoratedBook().getDueDate().getTimeInMillis(),
+                                            System.currentTimeMillis());
+
+        if (dueDays == 0)
+            return 0;
+
+        return 25 + 10 * (dueDays - 1);
+    }
 }
